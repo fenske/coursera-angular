@@ -2,14 +2,17 @@
 'use strict';
 
 angular.module('LunchCheck', [])
+       .controller('LunchCheckController', LunchCheckController);
 
-.controller('LunchCheckController', function ($scope) {
-  //To make the 'empty check' work
-  $scope.menu = "";
+LunchCheckController.$inject = ['$scope'];
 
-  $scope.checkItems = function () {
-      var number  = getNumberOfItems($scope.menu.split(','));
-      evaluateNumber(number);
+function LunchCheckController($scope) {
+    //To make the 'empty check' work
+    $scope.menu = "";
+
+    $scope.checkItems = function () {
+        var number  = getNumberOfItems($scope.menu.split(','));
+        evaluateNumber(number);
   }
 
   function getNumberOfItems(arr) {
@@ -30,6 +33,6 @@ angular.module('LunchCheck', [])
       else if (number >= 1 && number <= 3) $scope.result = "Enjoy!";
       else if (number > 3)                 $scope.result = "Too much!";
   }
-});
+}
 
 })();
