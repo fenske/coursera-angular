@@ -21,9 +21,14 @@ angular.module('LunchCheck', [])
   }
 
   function evaluateNumber(number) {
-      if (number >= 1 && number <= 3) $scope.result = "Enjoy!";
-      else if (number > 3)            $scope.result = "Too much!";
-      else if (number == 0)           $scope.result = "Please enter data first";
+      $scope.lunchStyle = {color:'green', padding:'6px', border:'2px solid green'};
+
+      if (number === 0) {
+        $scope.lunchStyle = {color:'red', padding:'6px', border:'4px dashed red'};
+        $scope.result = "Please enter data first";
+      }
+      else if (number >= 1 && number <= 3) $scope.result = "Enjoy!";
+      else if (number > 3)                 $scope.result = "Too much!";
   }
 });
 
