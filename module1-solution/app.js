@@ -4,8 +4,8 @@
 angular.module('LunchCheck', [])
 
 .controller('LunchCheckController', function ($scope) {
-  //To make the 'empty check' work
   $scope.menu = "";
+  $scope.result = "";
 
   $scope.checkItems = function () {
       var number  = getNumberOfItems($scope.menu.split(','));
