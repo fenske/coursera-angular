@@ -10,7 +10,8 @@ function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundItemsList.html',
     scope: {
-      foundItems: '<'
+      foundItems: '<',
+      onRemove: '&'
     },
     controller: NarrowItDownController,
     controllerAs: 'narrower',
@@ -31,6 +32,7 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(narrower.searchTerm);
 
     promise.then(function (response) {
+      //TODO Move logic to the service
       // process result and only keep items that match
       narrower.foundItems = [];
       for (var i = 0; i < response.data.menu_items.length; i++) {
@@ -38,10 +40,15 @@ function NarrowItDownController(MenuSearchService) {
           narrower.foundItems.push(response.data.menu_items[i]);
         }
       }
-      console.log(narrower.foundItems);
+      narrower.searchTerm = "";
     }).catch(function(error) {
       console.log("Something went wrong: " + error);
     });
+  }
+
+  narrower.removeItem = function(index) {
+    //FIXME Implement logic in the service instead
+    narrower.foundItems.splice(index, 1);
   }
 }
 

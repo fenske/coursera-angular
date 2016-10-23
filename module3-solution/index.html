@@ -18,9 +18,9 @@
     </div>
     <br/>
     <br/>
-    <br/> 
+    <br/>
     <!-- found-items should be implemented as a component -->
-    <found-items-list found-items="narrower.foundItems"></found-items-list>
+    <found-items-list found-items="narrower.foundItems" on-remove="narrower.removeItem(index)"></found-items-list>
   </div>
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
