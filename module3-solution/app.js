@@ -57,6 +57,9 @@ function MenuSearchService($http) {
 
   service.filterMenuItems = function(searchTerm, menuItems) {
     foundItems.splice(0, foundItems.length);
+    if (searchTerm === "") {
+      return;
+    }
     for (var i = 0; i < menuItems.length; i++) {
       if (menuItems[i].description.indexOf(searchTerm) !== -1) {
         foundItems.push(menuItems[i]);
