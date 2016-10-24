@@ -17,7 +17,6 @@ function FoundItemsDirective() {
     controllerAs: 'narrower',
     bindToController: true
   };
-
   return ddo;
 }
 
@@ -25,12 +24,8 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrower = this;
 
-  narrower.searchTerm = "";
-
   narrower.findItems = function() {
-
     var promise = MenuSearchService.getMatchedMenuItems(narrower.searchTerm);
-
     promise.then(function (response) {
       narrower.foundItems = filterMenuItems(
         narrower.searchTerm, response.data.menu_items);
@@ -65,9 +60,7 @@ function MenuSearchService($http) {
       method: "GET",
       url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
     });
-
     return response;
   }
 }
-
 })();
