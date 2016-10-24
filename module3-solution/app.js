@@ -32,18 +32,22 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(narrower.searchTerm);
 
     promise.then(function (response) {
-      //TODO Move logic to the service
-      // process result and only keep items that match
-      narrower.foundItems = [];
-      for (var i = 0; i < response.data.menu_items.length; i++) {
-        if (response.data.menu_items[i].description.indexOf(narrower.searchTerm) !== -1) {
-          narrower.foundItems.push(response.data.menu_items[i]);
-        }
-      }
+      narrower.foundItems = filterMenuItems(
+        narrower.searchTerm, response.data.menu_items);
       narrower.searchTerm = "";
     }).catch(function(error) {
       console.log("Something went wrong: " + error);
     });
+  }
+
+  function filterMenuItems(searchTerm, menuItems) {
+    var foundItems = [];
+    for (var i = 0; i < menuItems.length; i++) {
+      if (menuItems[i].description.indexOf(searchTerm) !== -1) {
+        foundItems.push(menuItems[i]);
+      }
+    }
+    return foundItems;
   }
 
   narrower.removeItem = function(index) {
