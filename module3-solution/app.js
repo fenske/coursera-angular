@@ -24,10 +24,13 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrower = this;
 
+  narrower.searchTerm = "";
+  narrower.foundItems = MenuSearchService.getMenuItems();
+
   narrower.findItems = function() {
     var promise = MenuSearchService.getMatchedMenuItems(narrower.searchTerm);
     promise.then(function (response) {
-      narrower.foundItems = filterMenuItems(
+      MenuSearchService.filterMenuItems(
         narrower.searchTerm, response.data.menu_items);
       narrower.searchTerm = "";
     }).catch(function(error) {
@@ -35,25 +38,16 @@ function NarrowItDownController(MenuSearchService) {
     });
   }
 
-  function filterMenuItems(searchTerm, menuItems) {
-    var foundItems = [];
-    for (var i = 0; i < menuItems.length; i++) {
-      if (menuItems[i].description.indexOf(searchTerm) !== -1) {
-        foundItems.push(menuItems[i]);
-      }
-    }
-    return foundItems;
-  }
-
   narrower.removeItem = function(index) {
-    //FIXME Implement logic in the service instead
-    narrower.foundItems.splice(index, 1);
+    MenuSearchService.removeMenuItem(index);
   }
 }
 
 MenuSearchService.$inject = ['$http']
 function MenuSearchService($http) {
   var service = this;
+
+  var foundItems = [];
 
   service.getMatchedMenuItems = function(searchTerm) {
     return $http({
@@ -62,5 +56,22 @@ function MenuSearchService($http) {
     });
     return response;
   }
+
+  service.filterMenuItems = function(searchTerm, menuItems) {
+    foundItems.splice(0, foundItems.length);
+    for (var i = 0; i < menuItems.length; i++) {
+      if (menuItems[i].description.indexOf(searchTerm) !== -1) {
+        foundItems.push(menuItems[i]);
+      }
+    }
+  }
+
+  service.removeMenuItem = function(index) {
+    foundItems.splice(index, 1);
+  }
+
+  service.getMenuItems = function () {
+    return foundItems;
+  };
 }
 })();
