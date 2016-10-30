@@ -17,8 +17,19 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   .state('home', {
     url: '/',
     templateUrl: 'src/menuapp/templates/home.template.html'
-  });
+  })
 
+  // Categories list page
+  .state('categories', {
+    url: '/categories',
+    templateUrl: 'src/menuapp/templates/main-categories.template.html',
+    controller: 'CategoriesController as categoriesCtrl',
+    resolve: {
+      items: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
+      }]
+    }
+  });
 }
 
 })();

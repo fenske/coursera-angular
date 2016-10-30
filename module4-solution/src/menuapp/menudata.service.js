@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 
-angular.module('data')
+angular.module('MenuApp')
 .service('MenuDataService', MenuDataService);
 
 MenuDataService.$inject = ['$http']
@@ -9,7 +9,7 @@ function MenuDataService($http) {
   var service = this;
 
   service.getAllCategories = function() {
-    return $http({
+    var response = $http({
       method: "GET",
       url: ("https://davids-restaurant.herokuapp.com/categories.json")
     });
@@ -17,7 +17,7 @@ function MenuDataService($http) {
   }
 
   service.getItemsForCategory = function(categoryShortName) {
-    return $http({
+    var response = $http({
       method: "GET",
       url: ("https://davids-restaurant.herokuapp.com/menu_items.json?category=" + categoryShortName)
     });
