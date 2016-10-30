@@ -5,7 +5,7 @@ angular.module('MenuApp')
 .component('categories', {
   templateUrl: 'src/menuapp/templates/categories.template.html',
   bindings: {
-    items: '<' // Why on the Earth this has to be called 'items'?
+    items: '<'
   }
 });
 
