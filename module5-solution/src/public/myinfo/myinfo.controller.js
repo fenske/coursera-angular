@@ -6,10 +6,10 @@ angular.module('public')
 
 MyInfoController.$inject = ['userData', 'ApiPath'];
 function MyInfoController(userData, ApiPath) {
-  var $ctrl = this;
-  $ctrl.userData = userData;
-  $ctrl.basePath = ApiPath;
-  console.log($ctrl.userData)
+  var myinfoCtrl = this;
+  myinfoCtrl.userData = userData;
+  myinfoCtrl.basePath = ApiPath;
+  console.log(myinfoCtrl.userData)
 }
 
 })();
