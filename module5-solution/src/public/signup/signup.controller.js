@@ -11,7 +11,7 @@ function SignupController(MenuService) {
   signupCtrl.submit = function () {
     var promise = MenuService.getMenuItem(signupCtrl.user.favoriteDish);
     promise.then(function (response) {
-      var userData = {user: signupCtrl.user, favoriteDish: response.data};
+      var userData = {user: signupCtrl.user, favoriteMenuItem: response.data};
       MenuService.setUserData(userData);
       console.log(userData);
       signupCtrl.status = 'Success';

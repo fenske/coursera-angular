@@ -1,6 +1,19 @@
-<div id="info">
-  FirstName: {{ myinfoCtrl.userData.user.firstname }}<br>
-  LastName: {{ myinfoCtrl.userData.user.lastname }}<br>
-  Email: {{ myinfoCtrl.userData.user.email}} <br>
-  Phone: {{ myinfoCtrl.userData.user.phone }}
+<div class="container">
+  <h2 id="menu-categories-title">
+    User Info
+  </h2>
+  <div id="info">
+    FirstName: {{ myinfoCtrl.userData.user.firstname }}<br>
+    LastName: {{ myinfoCtrl.userData.user.lastname }}<br>
+    Email: {{ myinfoCtrl.userData.user.email}} <br>
+    Phone: {{ myinfoCtrl.userData.user.phone }}
+  </div>
+  <h2 id="menu-categories-title">
+    Favorite menu item
+  </h2>
+  <div id="info">
+    <img class="img-responsive" width="250" height="150" ng-src="{{myinfoCtrl.basePath}}/images/{{myinfoCtrl.userData.favoriteMenuItem.short_name}}.jpg" alt=""><br>
+    Name: {{ myinfoCtrl.userData.favoriteMenuItem.name }}<br>
+    Description: {{ myinfoCtrl.userData.favoriteMenuItem.description }}<br>
+  </div>
 </div>
