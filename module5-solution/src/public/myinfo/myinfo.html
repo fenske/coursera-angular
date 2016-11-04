@@ -17,4 +17,6 @@
     Description: {{ myinfoCtrl.userData.favoriteMenuItem.description }}<br>
   </div>
 </div>
+<div class="container" ng-if="!myinfoCtrl.userData">
 Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+</div>
