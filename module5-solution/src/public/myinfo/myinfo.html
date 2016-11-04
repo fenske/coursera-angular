@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-if="myinfoCtrl.userData">
   <h2 id="menu-categories-title">
     User Info
   </h2>
@@ -17,3 +17,4 @@
     Description: {{ myinfoCtrl.userData.favoriteMenuItem.description }}<br>
   </div>
 </div>
+Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
